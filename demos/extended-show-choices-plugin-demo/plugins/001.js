@@ -310,8 +310,9 @@ function createPluginLocalizationManager(config) {
      * @returns
      */
     self.get = function get(key) {
-        if (localeMap[currentLocale] && typeof localeMap[currentLocale][key] === 'string') {
-            return localeMap[currentLocale][key];
+        var loca = currentLocale.substring(0, 2);
+        if (localeMap[loca] && typeof localeMap[loca][key] === 'string') {
+            return localeMap[loca][key];
         }
         if (typeof fallbackData[key] === 'string') {
             return fallbackData[key];
@@ -331,11 +332,10 @@ function createPluginLocalizationManager(config) {
      * @returns
      */
     self.setLocale = function setLocale(locale) {
-        var loca = locale.substring(0, 2);
-        if (!localeMap[loca]) {
+        if (!localeMap[locale.substring(0, 2)]) {
             return false;
         }
-        currentLocale = loca;
+        currentLocale = locale;
         return true;
     };
     /**
