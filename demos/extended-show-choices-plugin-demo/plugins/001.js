@@ -331,10 +331,11 @@ function createPluginLocalizationManager(config) {
      * @returns
      */
     self.setLocale = function setLocale(locale) {
-        if (!!localeMap[locale]) {
+        var loca = locale.substring(0, 2);
+        if (!localeMap[loca]) {
             return false;
         }
-        currentLocale = locale;
+        currentLocale = loca;
         return true;
     };
     /**
