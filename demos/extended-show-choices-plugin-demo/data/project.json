@@ -315,14 +315,14 @@
 	"courseScenePartId": -1,
 	"courseStartPointId": -1,
 	"commonActionCommandListObject": {  },
-	"actionCommandListObject": { "1": [ {
+	"actionCommandListObject": { "1": [  ], "2": [ {
 	"id": 1,
 	"commandType": 1100,
 	"ignored": false,
 	"instanceConfigurable": false,
 	"custom": {
 	"customId": 1,
-	"valueJson": "[\n    {\n        \"id\": 1,\n        \"value\": 1\n    },\n    {\n        \"id\": 2,\n        \"value\": 2\n    },\n    {\n        \"id\": 3,\n        \"value\": 3\n    },\n    {\n        \"id\": 4,\n        \"value\": 4\n    },\n    {\n        \"id\": 5,\n        \"value\": 5\n    },\n    {\n        \"id\": 6,\n        \"value\": 6\n    },\n    {\n        \"id\": 7,\n        \"value\": 2\n    },\n    {\n        \"id\": 8,\n        \"value\": 1\n    },\n    {\n        \"id\": 9,\n        \"value\": 2\n    },\n    {\n        \"id\": 10,\n        \"value\": -1\n    },\n    {\n        \"id\": 11,\n        \"value\": 2\n    }\n]\n"
+	"valueJson": "[\n    {\n        \"id\": 1,\n        \"value\": 1\n    },\n    {\n        \"id\": 2,\n        \"value\": 2\n    },\n    {\n        \"id\": 3,\n        \"value\": 3\n    },\n    {\n        \"id\": 4,\n        \"value\": 4\n    },\n    {\n        \"id\": 5,\n        \"value\": 5\n    },\n    {\n        \"id\": 6,\n        \"value\": 6\n    },\n    {\n        \"id\": 7,\n        \"value\": 2\n    },\n    {\n        \"id\": 10,\n        \"value\": -1\n    }\n]\n"
 }
 } ] },
 	"disappearActionCommandList": [  ]
@@ -372,7 +372,8 @@
 		{"id":1,"name":"font6x10","filename":"img/001.png","srcFilename":"","horzDivCount":1,"vertDivCount":1,			"folder": false},
 		{"id":2,"name":"font8x8","filename":"img/002.png","srcFilename":"","horzDivCount":1,"vertDivCount":1,			"folder": false},
 		{"id":3,"name":"font12x12","filename":"img/003.png","srcFilename":"","horzDivCount":1,"vertDivCount":1,			"folder": false},
-		{"id":4,"name":"blank16x16","filename":"img/004.png","srcFilename":"D:/agogpixel/pgmmv-extended-show-choices-plugin-demo/assets/blank16x16.png","horzDivCount":1,"vertDivCount":1,			"folder": false}
+		{"id":4,"name":"blank16x16","filename":"img/004.png","srcFilename":"D:/agogpixel/pgmmv-extended-show-choices-plugin-demo/assets/blank16x16.png","horzDivCount":1,"vertDivCount":1,			"folder": false},
+		{"id":5,"name":"menu-background","filename":"img/005.png","srcFilename":"D:/agogpixel/pgmmv-extended-show-choices-plugin-demo/assets/menu-background.png","horzDivCount":1,"vertDivCount":1,			"folder": false}
 	],
 	"fontList": [
 				{
@@ -451,7 +452,7 @@
 			"fontId": 2,
 			"letterSpacing": 0,
 			"lineSpacing": 0,
-			"text": { "en_US": "Choice 1" },
+			"text": { "en_US": "\\C[#f00]Choice 1\\C[]" },
 			"folder": false
 		},
 				{
@@ -460,7 +461,7 @@
 			"fontId": 2,
 			"letterSpacing": 0,
 			"lineSpacing": 0,
-			"text": { "en_US": "Choice 2" },
+			"text": { "en_US": "\\S[+2]Choice 2\\S[]" },
 			"folder": false
 		},
 				{
@@ -469,7 +470,7 @@
 			"fontId": 2,
 			"letterSpacing": 0,
 			"lineSpacing": 0,
-			"text": { "en_US": "Choice 3" },
+			"text": { "en_US": "\\C[#0f0]Choice 3\\C[]" },
 			"folder": false
 		},
 				{
@@ -487,7 +488,7 @@
 			"fontId": 2,
 			"letterSpacing": 0,
 			"lineSpacing": 0,
-			"text": { "en_US": "Choice 5" },
+			"text": { "en_US": "\\C[#00f]Choice 5\\C[]" },
 			"folder": false
 		},
 				{
@@ -830,6 +831,34 @@
 	"upDownMoveSpeed": 100,
 	"jumpSpeed": 100,
 	"turnSpeed": 100,
+	"objCommandList": [  ],
+	"memo": "",
+	"x": -72,
+	"y": -24,
+	"width": 168,
+	"height": 48,
+	"shortcutList": []
+}, {
+	"id": 2,
+	"name": "Actions002",
+	"a": 255,
+	"r": 166,
+	"g": 166,
+	"b": 166,
+	"animMotionId": -1,
+	"animDirectionId": -1,
+	"takeOverMotion": true,
+	"jumpable": false,
+	"enableCustomizedJump": false,
+	"ignoreMoveInput": false,
+	"keepDirection": false,
+	"ignoreGravity": false,
+	"gravity": 100,
+	"reflectGravityToDisplayDirection": false,
+	"moveSpeed": 100,
+	"upDownMoveSpeed": 100,
+	"jumpSpeed": 100,
+	"turnSpeed": 100,
 	"objCommandList": [ {
 	"id": 1,
 	"commandType": 1100,
@@ -837,17 +866,37 @@
 	"instanceConfigurable": false,
 	"custom": {
 	"customId": 1,
-	"valueJson": "[\n    {\n        \"id\": 1,\n        \"value\": 1\n    },\n    {\n        \"id\": 2,\n        \"value\": 2\n    },\n    {\n        \"id\": 3,\n        \"value\": 3\n    },\n    {\n        \"id\": 4,\n        \"value\": 4\n    },\n    {\n        \"id\": 5,\n        \"value\": 5\n    },\n    {\n        \"id\": 6,\n        \"value\": 6\n    },\n    {\n        \"id\": 7,\n        \"value\": 2\n    },\n    {\n        \"id\": 8,\n        \"value\": 1\n    },\n    {\n        \"id\": 9,\n        \"value\": 2\n    },\n    {\n        \"id\": 10,\n        \"value\": 2000\n    },\n    {\n        \"id\": 11,\n        \"value\": 2\n    }\n]\n"
+	"valueJson": "[\n    {\n        \"id\": 1,\n        \"value\": 1\n    },\n    {\n        \"id\": 2,\n        \"value\": 2\n    },\n    {\n        \"id\": 3,\n        \"value\": 3\n    },\n    {\n        \"id\": 4,\n        \"value\": 4\n    },\n    {\n        \"id\": 5,\n        \"value\": 5\n    },\n    {\n        \"id\": 6,\n        \"value\": 6\n    },\n    {\n        \"id\": 7,\n        \"value\": 2\n    },\n    {\n        \"id\": 10,\n        \"value\": -1\n    }\n]\n"
 }
 } ],
 	"memo": "",
 	"x": -72,
-	"y": -24,
+	"y": 96,
 	"width": 168,
 	"height": 48,
 	"shortcutList": []
 } ],
-			"actionLinkList": [  ],
+			"actionLinkList": [ {
+	"id": 1,
+	"typeIdPair": [ [0, 1, -1], [0, 2, -1] ],
+	"linkType": 0,
+	"priority": 0,
+	"a": 255,
+	"r": 0,
+	"g": 0,
+	"b": 0,
+	"changeConditionType": 3,
+	"noInput": false,
+	"useInput": false,
+	"inputConditionList": [  ],
+	"linkConditionList": [  ],
+	"memo": "",
+	"coordList": [ [ 12, 23 ], [ 12, 96 ] ],
+	"endPointFactor": [ -1, -1 ],
+	"visible": true,
+	"num": 0,
+	"actionLinkIdList": [  ]
+} ],
 			"actionGroupList": [  ],
 			"memo": "",
 			"testplayOnly": false,
@@ -1497,7 +1546,13 @@
 					"srcFilename": "D:/agogpixel/pgmmv-extended-show-choices-plugin-demo/assets/pgmmv-extended-show-choices-plugin-0.0.0-dev.pgmmv.js",
 					"enabled": true,
 					"internalJson": {},
-					"paramValueJson": [],
+					"paramValueJson": [
+    {
+        "id": 1,
+        "value": 5
+    }
+]
+,
 					"officialKey": "",
 			"folder": false
 				}
