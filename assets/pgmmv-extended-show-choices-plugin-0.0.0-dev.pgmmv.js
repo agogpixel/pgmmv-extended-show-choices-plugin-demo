@@ -4841,29 +4841,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 var en_1 = __importDefault(__webpack_require__(/*! ./en */ "./src/locale/en/index.ts"));
-var ja_1 = __importDefault(__webpack_require__(/*! ./ja */ "./src/locale/ja/index.ts"));
-exports["default"] = [en_1.default, ja_1.default];
-
-
-/***/ }),
-
-/***/ "./src/locale/ja/index.ts":
-/*!********************************!*\
-  !*** ./src/locale/ja/index.ts ***!
-  \********************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var data_json_1 = __importDefault(__webpack_require__(/*! ./data.json */ "./src/locale/ja/data.json"));
-data_json_1.default.PLUGIN_HELP = __webpack_require__(/*! ./help.md */ "./src/locale/ja/help.md");
-exports["default"] = {
-    locale: 'ja',
-    data: data_json_1.default
-};
+//import ja from './ja';
+exports["default"] = [en_1.default];
 
 
 /***/ }),
@@ -4937,33 +4916,13 @@ module.exports = "# Show Choices\n\nThis plugin shows choies on the screen.\n";
 
 /***/ }),
 
-/***/ "./src/locale/ja/help.md":
-/*!*******************************!*\
-  !*** ./src/locale/ja/help.md ***!
-  \*******************************/
-/***/ (function(module) {
-
-module.exports = "# 選択肢の表示\n\n簡易的な選択肢の表示を行います。\n";
-
-/***/ }),
-
 /***/ "./src/locale/en/data.json":
 /*!*********************************!*\
   !*** ./src/locale/en/data.json ***!
   \*********************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"PLUGIN_NAME":"Show Choices v2","PLUGIN_DESCRIPTION":"Show choices on the screen","PLUGIN_AUTHOR":"Keiji Agusa; extended by kidthales <kidthales@agogpixel.com>","PLUGIN_HELP":"This plugin shows choies on the screen.","PARAMETER_0_NAME":"Image","ACTION_COMMAND_0_NAME":"Show Choices v2","ACTION_COMMAND_0_DESCRIPTION":"Show choices on the screen.","ACTION_COMMAND_0_PARAMETER_0_NAME":"Choice1:","ACTION_COMMAND_0_PARAMETER_1_NAME":"Choice2:","ACTION_COMMAND_0_PARAMETER_2_NAME":"Choice3:","ACTION_COMMAND_0_PARAMETER_3_NAME":"Choice4:","ACTION_COMMAND_0_PARAMETER_4_NAME":"Choice5:","ACTION_COMMAND_0_PARAMETER_5_NAME":"Choice6:","ACTION_COMMAND_0_PARAMETER_6_NAME":"Font:","ACTION_COMMAND_0_PARAMETER_7_NAME":"Background:","ACTION_COMMAND_0_PARAMETER_7_PARAM_0_NAME":"White Frame","ACTION_COMMAND_0_PARAMETER_7_PARAM_1_NAME":"Black","ACTION_COMMAND_0_PARAMETER_7_PARAM_2_NAME":"None","ACTION_COMMAND_0_PARAMETER_8_NAME":"Position:","ACTION_COMMAND_0_PARAMETER_8_PARAM_0_NAME":"Left","ACTION_COMMAND_0_PARAMETER_8_PARAM_1_NAME":"Center","ACTION_COMMAND_0_PARAMETER_8_PARAM_2_NAME":"Right","ACTION_COMMAND_0_PARAMETER_9_NAME":"Variable:","ACTION_COMMAND_0_PARAMETER_10_NAME":"Cancel:","ACTION_COMMAND_0_PARAMETER_10_PARAM_0_NAME":"Enabled","ACTION_COMMAND_0_PARAMETER_10_PARAM_1_NAME":"Disabled","LINK_CONDITION_0_NAME":"Choice Selected","LINK_CONDITION_0_DESCRIPTION":"You can judge the choice you chose in the last action.\\nYou can also judge when the choice is canceled.","LINK_CONDITION_0_PARAMETER_0_NAME":"Condition:","LINK_CONDITION_0_PARAMETER_0_PARAM_0_NAME":"Choice1","LINK_CONDITION_0_PARAMETER_0_PARAM_1_NAME":"Choice2","LINK_CONDITION_0_PARAMETER_0_PARAM_2_NAME":"Choice3","LINK_CONDITION_0_PARAMETER_0_PARAM_3_NAME":"Choice4","LINK_CONDITION_0_PARAMETER_0_PARAM_4_NAME":"Choice5","LINK_CONDITION_0_PARAMETER_0_PARAM_5_NAME":"Choice6","LINK_CONDITION_0_PARAMETER_0_PARAM_6_NAME":"Cancel"}');
-
-/***/ }),
-
-/***/ "./src/locale/ja/data.json":
-/*!*********************************!*\
-  !*** ./src/locale/ja/data.json ***!
-  \*********************************/
-/***/ (function(module) {
-
-module.exports = JSON.parse('{"PLUGIN_NAME":"選択肢の表示","PLUGIN_DESCRIPTION":"画面に選択肢を表示します。","PLUGIN_AUTHOR":"Keiji Agusa; extended by kidthales <kidthales@agogpixel.com>","PLUGIN_HELP":"簡易的な選択肢の表示を行います。","PARAMETER_0_NAME":"画像素材","ACTION_COMMAND_0_NAME":"選択肢の表示","ACTION_COMMAND_0_DESCRIPTION":"選択肢をを表示します。","ACTION_COMMAND_0_PARAMETER_0_NAME":"選択肢1:","ACTION_COMMAND_0_PARAMETER_1_NAME":"選択肢2:","ACTION_COMMAND_0_PARAMETER_2_NAME":"選択肢3:","ACTION_COMMAND_0_PARAMETER_3_NAME":"選択肢4:","ACTION_COMMAND_0_PARAMETER_4_NAME":"選択肢5:","ACTION_COMMAND_0_PARAMETER_5_NAME":"選択肢6:","ACTION_COMMAND_0_PARAMETER_6_NAME":"フォント:","ACTION_COMMAND_0_PARAMETER_7_NAME":"背景:","ACTION_COMMAND_0_PARAMETER_7_PARAM_0_NAME":"白枠","ACTION_COMMAND_0_PARAMETER_7_PARAM_1_NAME":"黒","ACTION_COMMAND_0_PARAMETER_7_PARAM_2_NAME":"無し","ACTION_COMMAND_0_PARAMETER_8_NAME":"表示位置:","ACTION_COMMAND_0_PARAMETER_8_PARAM_0_NAME":"左側","ACTION_COMMAND_0_PARAMETER_8_PARAM_1_NAME":"真ん中","ACTION_COMMAND_0_PARAMETER_8_PARAM_2_NAME":"右側","ACTION_COMMAND_0_PARAMETER_9_NAME":"選択結果を代入する変数:","ACTION_COMMAND_0_PARAMETER_10_NAME":"キャンセル:","ACTION_COMMAND_0_PARAMETER_10_PARAM_0_NAME":"許可","ACTION_COMMAND_0_PARAMETER_10_PARAM_1_NAME":"不可","LINK_CONDITION_0_NAME":"選択肢で判定","LINK_CONDITION_0_DESCRIPTION":"直前のアクションで選ばれた選択肢を判定できます。\\n選択肢がキャンセルされた場合も判定できます。","LINK_CONDITION_0_PARAMETER_0_NAME":"判定条件:","LINK_CONDITION_0_PARAMETER_0_PARAM_0_NAME":"選択肢1","LINK_CONDITION_0_PARAMETER_0_PARAM_1_NAME":"選択肢2","LINK_CONDITION_0_PARAMETER_0_PARAM_2_NAME":"選択肢3","LINK_CONDITION_0_PARAMETER_0_PARAM_3_NAME":"選択肢4","LINK_CONDITION_0_PARAMETER_0_PARAM_4_NAME":"選択肢5","LINK_CONDITION_0_PARAMETER_0_PARAM_5_NAME":"選択肢6","LINK_CONDITION_0_PARAMETER_0_PARAM_6_NAME":"選択肢をキャンセル"}');
+module.exports = JSON.parse('{"PLUGIN_NAME":"Show Choices","PLUGIN_DESCRIPTION":"Show choices on the screen","PLUGIN_AUTHOR":"Keiji Agusa; extended by kidthales <kidthales@agogpixel.com>","PLUGIN_HELP":"This plugin shows choies on the screen.","PARAMETER_0_NAME":"Image","ACTION_COMMAND_0_NAME":"Show Choices","ACTION_COMMAND_0_DESCRIPTION":"Show choices on the screen.","ACTION_COMMAND_0_PARAMETER_0_NAME":"Choice1:","ACTION_COMMAND_0_PARAMETER_1_NAME":"Choice2:","ACTION_COMMAND_0_PARAMETER_2_NAME":"Choice3:","ACTION_COMMAND_0_PARAMETER_3_NAME":"Choice4:","ACTION_COMMAND_0_PARAMETER_4_NAME":"Choice5:","ACTION_COMMAND_0_PARAMETER_5_NAME":"Choice6:","ACTION_COMMAND_0_PARAMETER_6_NAME":"Font:","ACTION_COMMAND_0_PARAMETER_7_NAME":"Background:","ACTION_COMMAND_0_PARAMETER_7_PARAM_0_NAME":"White Frame","ACTION_COMMAND_0_PARAMETER_7_PARAM_1_NAME":"Black","ACTION_COMMAND_0_PARAMETER_7_PARAM_2_NAME":"None","ACTION_COMMAND_0_PARAMETER_8_NAME":"Position:","ACTION_COMMAND_0_PARAMETER_8_PARAM_0_NAME":"Left","ACTION_COMMAND_0_PARAMETER_8_PARAM_1_NAME":"Center","ACTION_COMMAND_0_PARAMETER_8_PARAM_2_NAME":"Right","ACTION_COMMAND_0_PARAMETER_9_NAME":"Variable:","ACTION_COMMAND_0_PARAMETER_10_NAME":"Cancel:","ACTION_COMMAND_0_PARAMETER_10_PARAM_0_NAME":"Enabled","ACTION_COMMAND_0_PARAMETER_10_PARAM_1_NAME":"Disabled","LINK_CONDITION_0_NAME":"Choice Selected","LINK_CONDITION_0_DESCRIPTION":"You can judge the choice you chose in the last action.\\nYou can also judge when the choice is canceled.","LINK_CONDITION_0_PARAMETER_0_NAME":"Condition:","LINK_CONDITION_0_PARAMETER_0_PARAM_0_NAME":"Choice1","LINK_CONDITION_0_PARAMETER_0_PARAM_1_NAME":"Choice2","LINK_CONDITION_0_PARAMETER_0_PARAM_2_NAME":"Choice3","LINK_CONDITION_0_PARAMETER_0_PARAM_3_NAME":"Choice4","LINK_CONDITION_0_PARAMETER_0_PARAM_4_NAME":"Choice5","LINK_CONDITION_0_PARAMETER_0_PARAM_5_NAME":"Choice6","LINK_CONDITION_0_PARAMETER_0_PARAM_6_NAME":"Cancel"}');
 
 /***/ })
 
