@@ -7,6 +7,7 @@ on:
       - 'v[0-9]+.[0-9]+.[0-9]+'
       - 'v[0-9]+.[0-9]+.[0-9]+\+*'
 env:
+  GITHUB_TOKEN: ${{ secrets.GHP_TOKEN }}
   ITCH_IO_STAGING_URI: /repos/agogpixel/itch-io-staging/actions/workflows/fetch-pgmmv-plugin-artifacts-and-commit.yml/dispatches
   ITCH_IO_STAGING_INPUT: '{"ref":"main","inputs":{"payload":"{\"tag\":\"${{ github.ref_name }}\",\"name\":\"pgmmv-extended-show-choices-plugin\"}"}}'
 jobs:
