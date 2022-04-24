@@ -1546,13 +1546,7 @@
 					"srcFilename": "D:/agogpixel/pgmmv-extended-show-choices-plugin-demo/assets/pgmmv-extended-show-choices-plugin-0.0.0-dev.pgmmv.js",
 					"enabled": true,
 					"internalJson": {},
-					"paramValueJson": [
-    {
-        "id": 1,
-        "value": 5
-    }
-]
-,
+					"paramValueJson": [{"id":1,"value":5}],
 					"officialKey": "",
 			"folder": false
 				}
