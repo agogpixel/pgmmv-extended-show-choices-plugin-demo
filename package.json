@@ -1,0 +1,41 @@
+{
+  "name": "@agogpixel/pgmmv-extended-show-choices-plugin-demo",
+  "description": "Extended Show Choices plugin demo for Pixel Game Maker MV.",
+  "license": "MIT",
+  "author": "kidthales <kidthales@agogpixel.com>",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/agogpixel/pgmmv-extended-show-choices-plugin-demo"
+  },
+  "scripts": {
+    "postinstall": "husky install",
+    "prebuild": "npm run clean",
+    "build": "npm run zip-demos",
+    "fetch-plugin": "node scripts/fetch-plugin.js",
+    "zip-demos": "node scripts/zip-demos.js",
+    "lint": "eslint scripts && prettier --check .",
+    "lint-fix": "eslint --fix scripts && prettier --write .",
+    "clean": "shx rm -rf dist"
+  },
+  "devDependencies": {
+    "archiver": "~5.3.1",
+    "dotenv": "~16.0.0",
+    "eslint": "~8.14.0",
+    "eslint-config-prettier": "~8.5.0",
+    "eslint-plugin-prettier": "~4.0.0",
+    "husky": "~7.0.4",
+    "lint-staged": "~12.4.0",
+    "octokit": "~1.7.1",
+    "prettier": "~2.6.2",
+    "shx": "~0.3.4"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "lint-staged": {
+    "*.(js|ts)": "eslint --cache --fix",
+    "*.(json|md|yml)": "prettier --write"
+  }
+}
