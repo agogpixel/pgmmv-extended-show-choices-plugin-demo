@@ -3743,13 +3743,10 @@ function createChoicesLayerClass() {
             this.service = service;
             this.objectId = objectId;
             this.instanceId = instanceId;
-            //this.bgType = obj.getValue(valueJson, 8);
             this.currentIndex = 0;
+            this.mode = choices_layer_mode_enum_1.ChoicesLayerMode.End;
             this.pressedKey = ~0;
             this.mousePressedKey = ~0;
-            //this.cancellable = obj.getValue(valueJson, 11) === 1;
-            //this.variableId = obj.getValue(valueJson, 10);
-            this.mode = choices_layer_mode_enum_1.ChoicesLayerMode.End;
             var bgImageId = service.getBgImageId();
             if (bgImageId === null) {
                 return false;
@@ -3758,7 +3755,6 @@ function createChoicesLayerClass() {
             if (bgImageData == null) {
                 return false;
             }
-            //this.bgImageTex = cc.TextureCache.getInstance().addImage(bgImageData.filename);
             this.bgImageTex = cc.textureCache.addImage(bgImageData.filename);
             this.bgImageTex.setAliasTexParameters();
             var fontId = service.getFontId();
@@ -4058,7 +4054,7 @@ function createChoicesLayerClass() {
             for (var i = this.choiceHeightList.length - 1; i > this.currentIndex; i--) {
                 y += 8 + this.choiceHeightList[i];
             }
-            this.highlight = cc.DrawNode.create();
+            this.highlight = new cc.DrawNode();
             this.highlight.drawRect(cc.p(-4, y - 4), cc.p(this.winWidth - 16 + 4, y + this.choiceHeightList[this.currentIndex] + 4), cc.color(0, 255, 255, 128), 0, cc.color(0, 0, 0, 0));
             this.highlightLayer.addChild(this.highlight);
             this.highlight.runAction(cc.sequence(cc.fadeIn(0.0), cc.repeat(cc.sequence(cc.fadeTo(0.5, 255), cc.fadeTo(0.5, 128)), Math.pow(2, 30))));
@@ -4204,19 +4200,23 @@ function createFontDraw(layer, zIndex, fontData, letterSpacing) {
     }
     function parseTag(message, head, size) {
         //ret: {head: <next head position>, tagName: <'S', 'C', or null>, param: <if 'S' then <size: int>. if 'C' then [<R: int>, <G: int>, <B: int>]. > }
-        var tag = message.substr(head, 3);
+        //const tag = message.substr(head, 3);
+        var tag = message.substring(head, head + 3);
         if (tag == '\\S[') {
             var index = message.indexOf(']', head + 3);
             if (index >= 0) {
-                var word = message.substr(head + 3, index - (head + 3));
+                //const word = message.substr(head + 3, index - (head + 3));
+                var word = message.substring(head + 3, index);
                 if (word.length == 0) {
                     size = letterHeight;
                 }
                 else if (word[0] == '+') {
-                    size = Math.max(0, size + getInt(word.substr(1), 0));
+                    //size = Math.max(0, size + getInt(word.substr(1), 0));
+                    size = Math.max(0, size + getInt(word.substring(1), 0));
                 }
                 else if (word[0] == '-') {
-                    size = Math.max(0, size - getInt(word.substr(1), 0));
+                    //size = Math.max(0, size - getInt(word.substr(1), 0));
+                    size = Math.max(0, size - getInt(word.substring(1), 0));
                 }
                 else {
                     size = Math.max(0, getInt(word, letterHeight));
@@ -4228,18 +4228,21 @@ function createFontDraw(layer, zIndex, fontData, letterSpacing) {
         else if (tag == '\\C[') {
             var index = message.indexOf(']', head + 3);
             if (index >= 0) {
-                var word = message.substr(head + 3, index - (head + 3));
+                //const word = message.substr(head + 3, index - (head + 3));
+                var word = message.substring(head + 3, index);
                 var rgb = void 0;
                 if (word.length == 0) {
                     rgb = [255, 255, 255];
                 }
                 else if (word[0] == '#') {
                     if (word.length == 3 + 1) {
-                        var v = parseInt(word.substr(1), 16);
+                        //const v = parseInt(word.substr(1), 16);
+                        var v = parseInt(word.substring(1), 16);
                         rgb = [((v >> 8) & 0x0f) * 0x11, ((v >> 4) & 0x0f) * 0x11, ((v >> 0) & 0x0f) * 0x11];
                     }
                     else if (word.length == 6 + 1) {
-                        var v = parseInt(word.substr(1), 16);
+                        //const v = parseInt(word.substr(1), 16);
+                        var v = parseInt(word.substring(1), 16);
                         rgb = [(v >> 16) & 0xff, (v >> 8) & 0xff, (v >> 0) & 0xff];
                     }
                     else {
@@ -4279,7 +4282,7 @@ function createFontDraw(layer, zIndex, fontData, letterSpacing) {
                 }
             }
             if (cx >= 0 && cy >= 0) {
-                var sprite = cc.Sprite.create(fontImageTex, cc.rect(cx * letterWidth, cy * letterHeight, letterWidth, letterHeight));
+                var sprite = new cc.Sprite(fontImageTex, cc.rect(cx * letterWidth, cy * letterHeight, letterWidth, letterHeight));
                 sprite.setAnchorPoint(0, 0);
                 sprite.x = letterX;
                 sprite.y = winHeight - letterHeight * 2 - (currentSize - letterHeight) - letterY;
@@ -4315,7 +4318,8 @@ function createFontDraw(layer, zIndex, fontData, letterSpacing) {
             if (text[j] == '\n') {
                 break;
             }
-            if (text.substr(j, 2) == '\\\\') {
+            //if (text.substr(j, 2) == '\\\\') {
+            if (text.substring(j, j + 2) == '\\\\') {
                 j += 2 - 1;
                 putLetter('\\');
                 continue;
