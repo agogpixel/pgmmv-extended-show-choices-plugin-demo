@@ -73,68 +73,8 @@
 	"r": -1,
 	"g": -1,
 	"b": -1
-}, {
-	"id": 2,
-	"scene": true,
-	"sceneMenuId": 1,
-	"x": 216,
-	"y": 120,
-	"width": 144,
-	"height": 48,
-	"shortcutList": [],
-	"a": -1,
-	"r": -1,
-	"g": -1,
-	"b": -1
 } ],
-	"flowLinkList": [ {
-	"id": 1,
-	"typeIdPair": [ [0, 1, -1], [0, 2, -1] ],
-	"linkType": 0,
-	"priority": 0,
-	"startPointGroup": 0,
-	"changeConditionType": 1,
-	"noInput": true,
-	"useInput": true,
-	"inputConditionList": [  ],
-	"sceneTerminated": false,
-	"timeElapsed": false,
-	"timeElapsed300": 0,
-	"switchVariableChanged": false,
-	"switchVariableConditionList": [  ],
-	"memo": "",
-	"preMoveEffect": 0,
-	"preMoveDuration300": 300,
-	"preMoveBgmChangeType": 0,
-	"preMoveBgmFadeout": false,
-	"preMoveBgmId": -1,
-	"preMoveBgmLoop": false,
-	"preMoveBgmChangeTiming": 0,
-	"preMovePlaySe": false,
-	"preMoveSeId": -1,
-	"postMoveEffect": 0,
-	"postMoveDuration300": 300,
-	"postMoveBgmChangeType": 2,
-	"postMoveBgmFadeout": false,
-	"postMoveBgmId": -1,
-	"postMoveBgmLoop": false,
-	"postMoveBgmChangeTiming": 0,
-	"postMovePlaySe": false,
-	"postMoveSeId": -1,
-	"postMoveChangeSwitchVariable": false,
-	"postMoveSwitchVariableAssignList": [  ],
-	"postMoveExecuteObjectAction": false,
-	"postMoveObjectActionList": [  ],
-	"coordList": [ [ 143, 71 ], [ 240, 120 ] ],
-	"endPointFactor": [ -1, -1 ],
-	"visible": true,
-	"num": 0,
-	"a": -1,
-	"r": -1,
-	"g": -1,
-	"b": -1,
-	"flowLinkIdList": [  ]
-} ],
+	"flowLinkList": [  ],
 	"flowGroupList": [  ],
 "transitionLinkPaletteList": [],
 "transitionScreenPaletteList": []
@@ -229,146 +169,17 @@
 					],
 					"objectSingleIdHash": {  },
 			"folder": false
-				},
-				{
-					"id": 1,
-					"name": "test-scene",
-					"horzScreenCount": 1,
-					"vertScreenCount": 1,
-					"tileset": [  ],
-					"memo": "",
-					"playBgmType": 1,
-					"bgmId": -1,
-					"loopBgmFlag": true,
-					"bgColorR": 0,
-					"bgColorG": 0,
-					"bgColorB": 0,
-					"setBgImageFlag": false,
-					"bgImageId": -1,
-					"bgImagePlacement": 0,
-					"bgImageMoveSpeed": 0,
-					"bgImageMoveDirection": 0,
-					"bgMoveSpeed": 100,
-					"bgMoveSpeedY": 100,
-					"layerMoveSpeed": [100, 100, 100, 100],
-					"layerMoveSpeedY": [100, 100, 100, 100],
-					"gravityAccel": 0,
-					"gravityDirection": 180,
-					"airResistance": 1,
-					"screenAutoScroll": false,
-					"screenAutoScrollSpeed": 0,
-					"screenAutoScrollDirection": 270,
-					"screenAutoScrollSwitchObjectId": -1,
-					"screenAutoScrollSwitchQualifierId": -1,
-					"screenAutoScrollSwitchId": -1,
-					"limitAreaX": 0,
-					"limitAreaY": 0,
-					"limitAreaWidth": 320,
-					"limitAreaHeight": 180,
-					"disableLimitArea": false,
-					"limitCameraX": 0,
-					"limitCameraY": 0,
-					"limitCameraWidth": 320,
-					"limitCameraHeight": 180,
-					"disableLimitCamera": false,
-					"initialMenuLayerId": -1,
-					"preloadMenuLayerIdList": [],
-					"sceneFilterEffectList": [
-					
-					],
-					"layer1": {
-						"tile": {												},
-						"name": "Layer 1"
-					},
-					"layer2": {
-						"tile": {												},
-						"name": "Layer 2"
-					},
-					"layer3": {
-						"tile": {												},
-						"name": "Layer 3"
-					},
-					"layer4": {
-						"tile": {												},
-						"name": "Layer 4"
-					},
-					"scenePartList": [
-							{
-			"id": 2,
-			"name": "test-menu",
-			"partType": 0,
-			"layerIndex": 0,
-			"locked": false,
-			"visible": true,
-			"priority": 1,
-			"dispPriority": 0,
-
-	"objectId": 1,
-	"initialActionId": -1,
-	"initialDisplayDirectionFlag": false,
-	"initialDisplayDirection": 180.000000,
-	"x": 135,
-	"y": 68.75,
-	"scalingX": 100,
-	"scalingY": 100,
-	"rotation": 0,
-	"courseScenePartId": -1,
-	"courseStartPointId": -1,
-	"commonActionCommandListObject": {  },
-	"actionCommandListObject": { "1": [ {
-	"id": 1,
-	"commandType": 1100,
-	"ignored": false,
-	"instanceConfigurable": false,
-	"custom": {
-	"customId": 1,
-	"valueJson": "[\n    {\n        \"id\": 1,\n        \"value\": 1\n    },\n    {\n        \"id\": 2,\n        \"value\": 2\n    },\n    {\n        \"id\": 3,\n        \"value\": 3\n    },\n    {\n        \"id\": 4,\n        \"value\": 4\n    },\n    {\n        \"id\": 5,\n        \"value\": 5\n    },\n    {\n        \"id\": 6,\n        \"value\": 6\n    },\n    {\n        \"id\": 7,\n        \"value\": 2\n    },\n    {\n        \"id\": 8,\n        \"value\": 1\n    },\n    {\n        \"id\": 9,\n        \"value\": 2\n    },\n    {\n        \"id\": 10,\n        \"value\": -1\n    },\n    {\n        \"id\": 11,\n        \"value\": 2\n    }\n]\n"
-}
-} ] },
-	"disappearActionCommandList": [  ]
-,
-			"folder": false
-		},
-							{
-			"id": 1,
-			"name": "Camera",
-			"partType": 2,
-			"layerIndex": -1,
-			"locked": false,
-			"visible": true,
-			"priority": 0,
-			"dispPriority": 0,
-
-	"othersType": 0,
-	"camera": {
-	"initialPlayerPosition": false,
-	"x": 0,
-	"y": 0,
-	"width": 320,
-	"height": 180,
-	"followTargetType": 0,
-	"objectId": -1,
-	"courseScenePartId": -1,
-	"startPointId": -1,
-	"scrollToShowAllPlayers": false,
-	"scaleToShowAllPlayers": false,
-	"maxScaling": 100.000000,
-	"switchObjectId": -1,
-	"switchQualifierId": -1,
-	"switchId": -1
-}
-,
-			"folder": false
-		}
-					],
-					"objectSingleIdHash": { "1": 2 },
-			"folder": false
 				}
 	],
 	"tilesetList": [
 		
 	],
 	"imageList": [
+		{"id":7,"name":"Imported Resources",			"folder": true, 	"children": [
+{"id":8,"name":"export file",					"folder": true, 			"children": [
+{"id":6,"name":"messageBg","filename":"img/006.png","srcFilename":"","horzDivCount":1,"vertDivCount":1,							"folder": false}
+			]}
+	]},
 		{"id":1,"name":"font6x10","filename":"img/001.png","srcFilename":"","horzDivCount":1,"vertDivCount":1,			"folder": false},
 		{"id":2,"name":"font8x8","filename":"img/002.png","srcFilename":"","horzDivCount":1,"vertDivCount":1,			"folder": false},
 		{"id":3,"name":"font12x12","filename":"img/003.png","srcFilename":"","horzDivCount":1,"vertDivCount":1,			"folder": false},
@@ -451,7 +262,7 @@
 			"fontId": 2,
 			"letterSpacing": 0,
 			"lineSpacing": 0,
-			"text": { "en_US": "Choice 1" },
+			"text": { "en_US": "\\C[#f00]Choice 1\\C[]" },
 			"folder": false
 		},
 				{
@@ -460,7 +271,7 @@
 			"fontId": 2,
 			"letterSpacing": 0,
 			"lineSpacing": 0,
-			"text": { "en_US": "Choice 2" },
+			"text": { "en_US": "\\S[+2]Choice 2\\S[]" },
 			"folder": false
 		},
 				{
@@ -469,7 +280,7 @@
 			"fontId": 2,
 			"letterSpacing": 0,
 			"lineSpacing": 0,
-			"text": { "en_US": "Choice 3" },
+			"text": { "en_US": "\\C[#0f0]Choice 3\\C[]" },
 			"folder": false
 		},
 				{
@@ -487,7 +298,7 @@
 			"fontId": 2,
 			"letterSpacing": 0,
 			"lineSpacing": 0,
-			"text": { "en_US": "Choice 5" },
+			"text": { "en_US": "\\C[#00f]Choice 5\\C[]" },
 			"folder": false
 		},
 				{
@@ -497,6 +308,24 @@
 			"letterSpacing": 0,
 			"lineSpacing": 0,
 			"text": { "en_US": "Choice 6" },
+			"folder": false
+		},
+				{
+			"id": 7,
+			"name": "text007",
+			"fontId": -1,
+			"letterSpacing": 0,
+			"lineSpacing": 0,
+			"text": { "en_US": "Choice 1" },
+			"folder": false
+		},
+				{
+			"id": 8,
+			"name": "text008",
+			"fontId": -1,
+			"letterSpacing": 0,
+			"lineSpacing": 0,
+			"text": { "en_US": "Choice 2" },
 			"folder": false
 		}
 	],
@@ -791,7 +620,7 @@
 	"objectList": [
 				{
 			"id": 1,
-			"name": "test-menu",
+			"name": "test001",
 			"type": 0,
 			"group": 0,
 			"animationId": 1,
@@ -801,13 +630,13 @@
 			"initialDisplayDirectionFlag": false,
 			"initialDisplayDirection": 180.000000,
 			"hitPlayerGroup": false,
-			"hitEnemyGroup": false,
-			"hitObjectGroupBit": 0,
+			"hitEnemyGroup": true,
+			"hitObjectGroupBit": 2,
 			"collideWithPlayerGroup": false,
-			"collideWithEnemyGroup": false,
-			"collideWithObjectGroupBit": 0,
-			"collideWithTile": false,
-			"collideWithTileGroupBit": 0,
+			"collideWithEnemyGroup": true,
+			"collideWithObjectGroupBit": 2,
+			"collideWithTile": true,
+			"collideWithTileGroupBit": 1,
 			"dispPriority": 0,
 			"actionList": [ {
 	"id": 1,
@@ -817,7 +646,7 @@
 	"g": 166,
 	"b": 166,
 	"animMotionId": 1,
-	"animDirectionId": 1,
+	"animDirectionId": -1,
 	"takeOverMotion": false,
 	"jumpable": false,
 	"enableCustomizedJump": false,
@@ -837,7 +666,7 @@
 	"instanceConfigurable": false,
 	"custom": {
 	"customId": 1,
-	"valueJson": "[\n    {\n        \"id\": 1,\n        \"value\": 1\n    },\n    {\n        \"id\": 2,\n        \"value\": 2\n    },\n    {\n        \"id\": 3,\n        \"value\": 3\n    },\n    {\n        \"id\": 4,\n        \"value\": 4\n    },\n    {\n        \"id\": 5,\n        \"value\": 5\n    },\n    {\n        \"id\": 6,\n        \"value\": 6\n    },\n    {\n        \"id\": 7,\n        \"value\": 2\n    },\n    {\n        \"id\": 8,\n        \"value\": 1\n    },\n    {\n        \"id\": 9,\n        \"value\": 2\n    },\n    {\n        \"id\": 10,\n        \"value\": 2000\n    },\n    {\n        \"id\": 11,\n        \"value\": 2\n    }\n]\n"
+	"valueJson": "[\n    {\n        \"id\": 101,\n        \"value\": 7\n    },\n    {\n        \"id\": 102,\n        \"value\": 8\n    },\n    {\n        \"id\": 6,\n        \"value\": -1\n    }\n]\n"
 }
 } ],
 	"memo": "",
@@ -1020,15 +849,6 @@
 			"moveRestrictionSettingFlag": false,
 			"moveRestrictionSettingList": [  ],
 					"variableList": [
-					{
-    "folder": false,
-    "id": 2000,
-    "initialValue": -1,
-    "memo": "",
-    "name": "Choice",
-    "toBeSaved": true
-}
-,
 					{
     "folder": false,
     "id": 1,
@@ -1491,13 +1311,30 @@
 	],
 	"pluginList": [
 				{
+					"id": 4,
+					"name": "Show Choices",
+					"filename": "plugins/004.js",
+					"srcFilename": "",
+					"enabled": true,
+					"internalJson": {"counter":71},
+					"paramValueJson": [{"id":1,"value":6}],
+					"officialKey": "ShowChoices.pgmexport",
+			"folder": false
+				},
+				{
 					"id": 1,
-					"name": "plugin_001",
+					"name": "Extended Show Choices",
 					"filename": "plugins/001.js",
 					"srcFilename": "D:/agogpixel/pgmmv-extended-show-choices-plugin-demo/assets/pgmmv-extended-show-choices-plugin-0.0.0-dev.pgmmv.js",
 					"enabled": true,
 					"internalJson": {},
-					"paramValueJson": [],
+					"paramValueJson": [
+    {
+        "id": 6,
+        "value": 2
+    }
+]
+,
 					"officialKey": "",
 			"folder": false
 				}
@@ -1527,68 +1364,8 @@
 	"r": -1,
 	"g": -1,
 	"b": -1
-}, {
-	"id": 2,
-	"scene": true,
-	"sceneMenuId": 1,
-	"x": 216,
-	"y": 120,
-	"width": 144,
-	"height": 48,
-	"shortcutList": [],
-	"a": -1,
-	"r": -1,
-	"g": -1,
-	"b": -1
 } ],
-	"flowLinkList": [ {
-	"id": 1,
-	"typeIdPair": [ [0, 1, -1], [0, 2, -1] ],
-	"linkType": 0,
-	"priority": 0,
-	"startPointGroup": 0,
-	"changeConditionType": 1,
-	"noInput": true,
-	"useInput": true,
-	"inputConditionList": [  ],
-	"sceneTerminated": false,
-	"timeElapsed": false,
-	"timeElapsed300": 0,
-	"switchVariableChanged": false,
-	"switchVariableConditionList": [  ],
-	"memo": "",
-	"preMoveEffect": 0,
-	"preMoveDuration300": 300,
-	"preMoveBgmChangeType": 0,
-	"preMoveBgmFadeout": false,
-	"preMoveBgmId": -1,
-	"preMoveBgmLoop": false,
-	"preMoveBgmChangeTiming": 0,
-	"preMovePlaySe": false,
-	"preMoveSeId": -1,
-	"postMoveEffect": 0,
-	"postMoveDuration300": 300,
-	"postMoveBgmChangeType": 2,
-	"postMoveBgmFadeout": false,
-	"postMoveBgmId": -1,
-	"postMoveBgmLoop": false,
-	"postMoveBgmChangeTiming": 0,
-	"postMovePlaySe": false,
-	"postMoveSeId": -1,
-	"postMoveChangeSwitchVariable": false,
-	"postMoveSwitchVariableAssignList": [  ],
-	"postMoveExecuteObjectAction": false,
-	"postMoveObjectActionList": [  ],
-	"coordList": [ [ 143, 71 ], [ 240, 120 ] ],
-	"endPointFactor": [ -1, -1 ],
-	"visible": true,
-	"num": 0,
-	"a": -1,
-	"r": -1,
-	"g": -1,
-	"b": -1,
-	"flowLinkIdList": [  ]
-} ],
+	"flowLinkList": [  ],
 	"flowGroupList": [  ],
 "transitionLinkPaletteList": [],
 "transitionScreenPaletteList": []
