@@ -851,6 +851,8 @@ var show_choices_background_display_type_enum_1 = __webpack_require__(/*! ../../
 var show_choices_horizontal_position_enum_1 = __webpack_require__(/*! ../../show-choices-horizontal-position.enum */ "./src/action-commands/show-choices/show-choices-horizontal-position.enum.ts");
 var show_choices_vertical_position_enum_1 = __webpack_require__(/*! ../../show-choices-vertical-position.enum */ "./src/action-commands/show-choices/show-choices-vertical-position.enum.ts");
 var choices_layer_mode_enum_1 = __webpack_require__(/*! ./choices-layer-mode.enum */ "./src/action-commands/show-choices/display/choices-layer/choices-layer-mode.enum.ts");
+// TODO: Remove when done debugging...
+var _debug_log_function_1 = __webpack_require__(/*! ../../../../utils/_debug-log.function */ "./src/utils/_debug-log.function.ts");
 function createChoicesLayerClass() {
     return cc.Layer.extend({
         ctor: function (inputService, showChoicesService) {
@@ -1073,10 +1075,14 @@ function renderChoicesText(textDimensions) {
     for (var i = 0; i < maxChoices; ++i) {
         var choiceLines = showChoicesService.createTextSprites(i + 1);
         var choiceHeight = 0;
+        // TODO: remove...
+        (0, _debug_log_function_1.DEBUG_LOG)("Rendering Choice ".concat(i + 1));
         for (var j = 0; j < choiceLines.length; ++j) {
             var letterLayer = new cc.Layer();
             letterLayer.setAnchorPoint(0, 0);
             this.layers.text.addChild(letterLayer, 1);
+            // TODO: remove...
+            (0, _debug_log_function_1.DEBUG_LOG)("  Rendering line ".concat(j + 1, " "));
             var choiceLine = choiceLines[j];
             var choiceLineMaxHeight = 0;
             for (var k = 0; k < choiceLine.length; ++k) {
@@ -1093,15 +1099,31 @@ function renderChoicesText(textDimensions) {
             }
             letterLayer.x = 0;
             letterLayer.y = -textDimensions.height;
+            // TODO: remove...
+            (0, _debug_log_function_1.DEBUG_LOG)("  Line ".concat(j + 1, " letter layer:"), {
+                x: letterLayer.x,
+                y: letterLayer.y,
+                w: textDimensions.width,
+                h: choiceLineMaxHeight
+            });
             textDimensions.height += choiceLineMaxHeight + 8;
             choiceHeight += choiceLineMaxHeight;
         }
+        // TODO: remove...
+        (0, _debug_log_function_1.DEBUG_LOG)("  Choice height: ".concat(choiceHeight));
         this.choiceHeightList.push(choiceHeight);
     }
     textDimensions.height -= 8;
     this.layers.text.x = 8;
     this.layers.text.y = textDimensions.height + 8;
     this.layers.text.visible = false;
+    // TODO: remove...
+    (0, _debug_log_function_1.DEBUG_LOG)("Choices text layer:", {
+        x: this.layers.text.x,
+        y: this.layers.text.y,
+        w: this.layers.text.width,
+        h: this.layers.text.height
+    });
 }
 /**
  * @private
@@ -1141,10 +1163,17 @@ function updateHighlightGraphics() {
         this.highlightGraphics.removeFromParent();
     }
     var y = 0;
-    for (var i = this.choiceHeightList.length - 1; i > this.currentIndex; i--) {
+    for (var i = this.choiceHeightList.length - 1; i >= this.currentIndex; i--) {
         y += 8 + this.choiceHeightList[i];
     }
     this.highlightGraphics = new cc.DrawNode();
+    // TODO: remove...
+    (0, _debug_log_function_1.DEBUG_LOG)("Highlight graphics rect:", {
+        x: -4,
+        y: y - 4,
+        w: this.windowDimensions.width - 16 + 4 - -4,
+        h: y + this.choiceHeightList[this.currentIndex] + 4 - (y - 4)
+    });
     this.highlightGraphics.drawRect(cc.p(-4, y - 4), cc.p(this.windowDimensions.width - 16 + 4, y + this.choiceHeightList[this.currentIndex] + 4), cc.color(0, 255, 255, 128), 0, cc.color(0, 0, 0, 0));
     this.layers.highlight.addChild(this.highlightGraphics);
     this.highlightGraphics.runAction(cc.sequence(cc.fadeIn(0.0), cc.repeat(cc.sequence(cc.fadeTo(0.5, 255), cc.fadeTo(0.5, 128)), Math.pow(2, 30))));
@@ -1381,7 +1410,7 @@ function parseCancelParameterValue(internalApi, valueJson) {
 }
 function parseChoiceParameterValues(internalApi, valueJson) {
     var values = [];
-    for (var i = 0; i < show_choices_const_1.maxChoices; i += 2) {
+    for (var i = 0; i < show_choices_const_1.maxChoices; ++i) {
         values.push(valueJson[show_choices_const_1.choiceIdBase + i + 1]);
     }
     return values;
@@ -2028,6 +2057,7 @@ function createShowChoicesService(config, internal) {
                 }
                 letterData[i].push(createSprite(text[j]));
             }
+            letterX = 0; // Reset x position for multiline choice...
         }
         return letterData;
     };
@@ -2318,8 +2348,6 @@ var show_choices_1 = __webpack_require__(/*! ./action-commands/show-choices */ "
 var link_conditions_1 = __webpack_require__(/*! ./link-conditions */ "./src/link-conditions/index.ts");
 var locale_1 = __importDefault(__webpack_require__(/*! ./locale */ "./src/locale/index.ts"));
 var parameters_1 = __webpack_require__(/*! ./parameters */ "./src/parameters/index.ts");
-// TODO: Remove when done debugging...
-var _debug_log_function_1 = __webpack_require__(/*! ./utils/_debug-log.function */ "./src/utils/_debug-log.function.ts");
 /**
  * Creates a plugin instance.
  *
@@ -2398,7 +2426,6 @@ function createPlugin() {
         // Treat this class constructor as a singleton within the scope of this
         // plugin.
         internalApi.ChoicesLayer = (0, show_choices_1.createChoicesLayerClass)();
-        (0, _debug_log_function_1.DEBUG_LOG)('Initialized internal API:', internalApi);
     };
     /**
      * Sets data configured in plugin parameters. Called from PGMMV editor & runtime.
