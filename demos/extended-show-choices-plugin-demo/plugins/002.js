@@ -2318,6 +2318,8 @@ var show_choices_1 = __webpack_require__(/*! ./action-commands/show-choices */ "
 var link_conditions_1 = __webpack_require__(/*! ./link-conditions */ "./src/link-conditions/index.ts");
 var locale_1 = __importDefault(__webpack_require__(/*! ./locale */ "./src/locale/index.ts"));
 var parameters_1 = __webpack_require__(/*! ./parameters */ "./src/parameters/index.ts");
+// TODO: Remove when done debugging...
+var _debug_log_function_1 = __webpack_require__(/*! ./utils/_debug-log.function */ "./src/utils/_debug-log.function.ts");
 /**
  * Creates a plugin instance.
  *
@@ -2396,7 +2398,7 @@ function createPlugin() {
         // Treat this class constructor as a singleton within the scope of this
         // plugin.
         internalApi.ChoicesLayer = (0, show_choices_1.createChoicesLayerClass)();
-        //DEBUG_LOG('Initialized internal API:', internalApi);
+        (0, _debug_log_function_1.DEBUG_LOG)('Initialized internal API:', internalApi);
     };
     /**
      * Sets data configured in plugin parameters. Called from PGMMV editor & runtime.
@@ -3012,6 +3014,27 @@ exports.parameters = [
         ]
     }
 ];
+
+
+/***/ }),
+
+/***/ "./src/utils/_debug-log.function.ts":
+/*!******************************************!*\
+  !*** ./src/utils/_debug-log.function.ts ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, exports) {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.DEBUG_LOG = void 0;
+function DEBUG_LOG(msg, data) {
+    var log = Agtk.log;
+    log(msg, 'Debug');
+    if (data !== undefined) {
+        log(data, 'Debug');
+    }
+}
+exports.DEBUG_LOG = DEBUG_LOG;
 
 
 /***/ }),

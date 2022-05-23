@@ -661,12 +661,12 @@
 	"turnSpeed": 100,
 	"objCommandList": [ {
 	"id": 1,
-	"commandType": 1100,
+	"commandType": 1200,
 	"ignored": false,
 	"instanceConfigurable": false,
 	"custom": {
 	"customId": 1,
-	"valueJson": "[\n    {\n        \"id\": 101,\n        \"value\": 7\n    },\n    {\n        \"id\": 102,\n        \"value\": 8\n    },\n    {\n        \"id\": 6,\n        \"value\": -1\n    }\n]\n"
+	"valueJson": "[\n    {\n        \"id\": 101,\n        \"value\": 7\n    },\n    {\n        \"id\": 102,\n        \"value\": 8\n    }\n]\n"
 }
 } ],
 	"memo": "",
@@ -1311,20 +1311,30 @@
 	],
 	"pluginList": [
 				{
-					"id": 4,
-					"name": "Show Choices",
-					"filename": "plugins/004.js",
-					"srcFilename": "",
+					"id": 1,
+					"name": "Runtime Logger",
+					"filename": "plugins/001.js",
+					"srcFilename": "D:/agogpixel/pgmmv-extended-show-choices-plugin-demo/assets/runtime-logger-plugin-0.3.0.pgmmv.js",
 					"enabled": true,
-					"internalJson": {"counter":72},
-					"paramValueJson": [{"id":1,"value":6}],
-					"officialKey": "ShowChoices.pgmexport",
+					"internalJson": {},
+					"paramValueJson": [
+    {
+        "id": 1,
+        "value": 0
+    },
+    {
+        "id": 4,
+        "value": 2
+    }
+]
+,
+					"officialKey": "",
 			"folder": false
 				},
 				{
-					"id": 1,
+					"id": 2,
 					"name": "Extended Show Choices",
-					"filename": "plugins/001.js",
+					"filename": "plugins/002.js",
 					"srcFilename": "D:/agogpixel/pgmmv-extended-show-choices-plugin-demo/assets/pgmmv-extended-show-choices-plugin-0.0.0-dev.pgmmv.js",
 					"enabled": true,
 					"internalJson": {},
