@@ -25,6 +25,7 @@
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.createPlugin = void 0;
 var plugin_info_category_1 = __webpack_require__(/*! @agogpixel/pgmmv-ts/api/agtk/plugin/plugin-info-category */ "./node_modules/@agogpixel/pgmmv-ts/api/agtk/plugin/plugin-info-category.js");
+var plugin_ui_parameter_type_1 = __webpack_require__(/*! @agogpixel/pgmmv-ts/api/agtk/plugin/plugin-ui-parameter-type */ "./node_modules/@agogpixel/pgmmv-ts/api/agtk/plugin/plugin-ui-parameter-type.js");
 var localization_1 = __webpack_require__(/*! ./localization */ "./node_modules/@agogpixel/pgmmv-plugin-support/src/localization/index.js");
 ////////////////////////////////////////////////////////////////////////////////
 // Public Static Properties
@@ -234,7 +235,7 @@ function normalizeParameters(paramValue, defaults) {
     var normalized = {};
     for (var i = 0; i < defaults.length; i++) {
         var p = defaults[i];
-        normalized[p.id] = p.defaultValue;
+        normalized[p.id] = (p.type === plugin_ui_parameter_type_1.AgtkPluginUiParameterType.Json ? JSON.stringify(p.defaultValue) : p.defaultValue);
     }
     for (var i = 0; i < paramValue.length; ++i) {
         var p = paramValue[i];
@@ -851,8 +852,7 @@ var show_choices_background_display_type_enum_1 = __webpack_require__(/*! ../../
 var show_choices_horizontal_position_enum_1 = __webpack_require__(/*! ../../show-choices-horizontal-position.enum */ "./src/action-commands/show-choices/show-choices-horizontal-position.enum.ts");
 var show_choices_vertical_position_enum_1 = __webpack_require__(/*! ../../show-choices-vertical-position.enum */ "./src/action-commands/show-choices/show-choices-vertical-position.enum.ts");
 var choices_layer_mode_enum_1 = __webpack_require__(/*! ./choices-layer-mode.enum */ "./src/action-commands/show-choices/display/choices-layer/choices-layer-mode.enum.ts");
-// TODO: Remove when done debugging...
-var _debug_log_function_1 = __webpack_require__(/*! ../../../../utils/_debug-log.function */ "./src/utils/_debug-log.function.ts");
+var MARGIN = 0; // 8;
 function createChoicesLayerClass() {
     return cc.Layer.extend({
         ctor: function (inputService, showChoicesService) {
@@ -863,7 +863,7 @@ function createChoicesLayerClass() {
             this.choiceHeightList = [];
             var textDimensions = cc.size(0, 0);
             renderChoicesText.call(this, textDimensions);
-            this.windowDimensions = cc.size(textDimensions.width + 16, textDimensions.height + 16);
+            this.windowDimensions = cc.size(textDimensions.width + 2 * MARGIN /*16*/, textDimensions.height + 2 * MARGIN /*16*/);
             if (showChoicesService.getBackgroundDisplayType() !== show_choices_background_display_type_enum_1.ShowChoicesBackgroundDisplayType.None) {
                 createWindow.call(this, 0, 0, this.windowDimensions.width, this.windowDimensions.height);
                 setChildrenOpacity(this.layers.background, 0);
@@ -877,9 +877,6 @@ function createChoicesLayerClass() {
         update: function () {
             var inputService = this.inputService;
             var showChoicesService = this.showChoicesService;
-            /*if (!this.service.isShowing()) {
-              return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
-            }*/
             if (this.mode === choices_layer_mode_enum_1.ChoicesLayerMode.Opening) {
                 this.layers.background.removeAllChildren();
                 var winHeight = (this.modeCounter + 1) * 16;
@@ -1001,11 +998,11 @@ function setChildrenOpacity(node, alpha) {
 function createLayers() {
     var background = new cc.Layer();
     var highlight = new cc.Layer();
-    highlight.x = 8;
-    highlight.y = 8;
+    highlight.x = MARGIN; // 8;
+    highlight.y = MARGIN; // 8;
     var text = new cc.Layer();
-    text.x = 8;
-    text.y = 8;
+    text.x = MARGIN; // 8;
+    text.y = MARGIN; // 8;
     this.layers = {
         background: background,
         highlight: highlight,
@@ -1027,15 +1024,23 @@ function createWindow(winX, winY, winWidth, winHeight) {
     switch (showChoicesService.getBackgroundDisplayType()) {
         case show_choices_background_display_type_enum_1.ShowChoicesBackgroundDisplayType.Graphics:
             var bgGraphics = new cc.DrawNode();
-            bgGraphics.drawRect(cc.p(winX, winY + winHeight - 8), cc.p(winX + winWidth - 8, winY), showChoicesService.getBackgroundColor() || null, 8, showChoicesService.getBackgroundBorderColor());
+            bgGraphics.drawRect(cc.p(winX, winY + winHeight - MARGIN /*8*/), cc.p(winX + winWidth - MARGIN /*8*/, winY), showChoicesService.getBackgroundColor() || null, 1, showChoicesService.getBackgroundBorderColor());
             this.layers.background.addChild(bgGraphics);
             break;
         case show_choices_background_display_type_enum_1.ShowChoicesBackgroundDisplayType.Image:
             // TODO: 9-slice support...
-            var bgImage = new cc.Sprite(showChoicesService.getBackgroundImageTexture());
+            var bgImageTexture = showChoicesService.getBackgroundImageTexture();
+            if (!bgImageTexture) {
+                // TODO: handle error...
+                return;
+            }
+            var bgImageFrame = new cc.SpriteFrame(bgImageTexture, cc.rect(0, 0, bgImageTexture.width, bgImageTexture.height));
+            //const bgImage = new cc.Scale9Sprite(bgImageFrame, cc.rect(4, 8, 92, 84));
+            var bgImage = new cc.Scale9Sprite(bgImageFrame);
             bgImage.setAnchorPoint(0, 0);
             bgImage.x = winX;
-            bgImage.y = winY + winHeight - 8;
+            bgImage.y = winY; // + winHeight - MARGIN; // 8;
+            bgImage.setContentSize(winWidth - MARGIN /*8*/, winHeight - MARGIN /*8*/);
             this.layers.background.addChild(bgImage);
             break;
         case show_choices_background_display_type_enum_1.ShowChoicesBackgroundDisplayType.None:
@@ -1053,15 +1058,15 @@ function getClickedIndex() {
     var screenSize = cc.director.getWinSize();
     var x = Agtk.variables.get(Agtk.variables.MouseXId).getValue();
     var y = screenSize.height - 1 - Agtk.variables.get(Agtk.variables.MouseYId).getValue();
-    if (x < this.x + 4 || x >= this.x + this.windowDimensions.width - 4) {
+    if (x < this.x + MARGIN / 2 || x >= this.x + this.windowDimensions.width - MARGIN / 2) {
         return -1;
     }
-    var iy = this.y + 8;
+    var iy = this.y + MARGIN;
     for (var i = this.choiceHeightList.length - 1; i >= 0; i--) {
-        if (y >= iy - 4 && y < iy + this.choiceHeightList[i] + 4) {
+        if (y >= iy - MARGIN / 2 && y < iy + this.choiceHeightList[i] + MARGIN / 2) {
             return i;
         }
-        iy += 8 + this.choiceHeightList[i];
+        iy += MARGIN + this.choiceHeightList[i];
     }
     return -1;
 }
@@ -1075,14 +1080,10 @@ function renderChoicesText(textDimensions) {
     for (var i = 0; i < maxChoices; ++i) {
         var choiceLines = showChoicesService.createTextSprites(i + 1);
         var choiceHeight = 0;
-        // TODO: remove...
-        (0, _debug_log_function_1.DEBUG_LOG)("Rendering Choice ".concat(i + 1));
         for (var j = 0; j < choiceLines.length; ++j) {
             var letterLayer = new cc.Layer();
             letterLayer.setAnchorPoint(0, 0);
             this.layers.text.addChild(letterLayer, 1);
-            // TODO: remove...
-            (0, _debug_log_function_1.DEBUG_LOG)("  Rendering line ".concat(j + 1, " "));
             var choiceLine = choiceLines[j];
             var choiceLineMaxHeight = 0;
             for (var k = 0; k < choiceLine.length; ++k) {
@@ -1098,32 +1099,16 @@ function renderChoicesText(textDimensions) {
                 }
             }
             letterLayer.x = 0;
-            letterLayer.y = -textDimensions.height;
-            // TODO: remove...
-            (0, _debug_log_function_1.DEBUG_LOG)("  Line ".concat(j + 1, " letter layer:"), {
-                x: letterLayer.x,
-                y: letterLayer.y,
-                w: textDimensions.width,
-                h: choiceLineMaxHeight
-            });
-            textDimensions.height += choiceLineMaxHeight + 8;
+            letterLayer.y = -textDimensions.height - 2 * choiceLineMaxHeight;
+            textDimensions.height += choiceLineMaxHeight + MARGIN;
             choiceHeight += choiceLineMaxHeight;
         }
-        // TODO: remove...
-        (0, _debug_log_function_1.DEBUG_LOG)("  Choice height: ".concat(choiceHeight));
         this.choiceHeightList.push(choiceHeight);
     }
-    textDimensions.height -= 8;
-    this.layers.text.x = 8;
-    this.layers.text.y = textDimensions.height + 8;
+    textDimensions.height -= MARGIN;
+    this.layers.text.x = MARGIN;
+    this.layers.text.y = textDimensions.height + MARGIN;
     this.layers.text.visible = false;
-    // TODO: remove...
-    (0, _debug_log_function_1.DEBUG_LOG)("Choices text layer:", {
-        x: this.layers.text.x,
-        y: this.layers.text.y,
-        w: this.layers.text.width,
-        h: this.layers.text.height
-    });
 }
 /**
  * @private
@@ -1139,20 +1124,20 @@ function setPosition() {
             this.x = (screenSize.width - this.windowDimensions.width) / 2;
             break;
         case show_choices_horizontal_position_enum_1.ShowChoicesHorizontalPosition.Right:
-            this.x = screenSize.width = this.windowDimensions.width;
+            this.x = screenSize.width - this.windowDimensions.width;
             break;
         default:
             break;
     }
     switch (showChoicesService.getVerticalPosition()) {
         case show_choices_vertical_position_enum_1.ShowChoicesVerticalPosition.Top:
-            this.y = screenSize.height;
+            this.y = screenSize.height - this.windowDimensions.height;
             break;
         case show_choices_vertical_position_enum_1.ShowChoicesVerticalPosition.Center:
             this.y = (screenSize.height - this.windowDimensions.height) / 2;
             break;
         case show_choices_vertical_position_enum_1.ShowChoicesVerticalPosition.Bottom:
-            this.y = this.windowDimensions.height;
+            this.y = 0;
             break;
         default:
             break;
@@ -1163,18 +1148,11 @@ function updateHighlightGraphics() {
         this.highlightGraphics.removeFromParent();
     }
     var y = 0;
-    for (var i = this.choiceHeightList.length - 1; i >= this.currentIndex; i--) {
-        y += 8 + this.choiceHeightList[i];
+    for (var i = this.choiceHeightList.length - 1; i > this.currentIndex; i--) {
+        y += MARGIN + this.choiceHeightList[i];
     }
     this.highlightGraphics = new cc.DrawNode();
-    // TODO: remove...
-    (0, _debug_log_function_1.DEBUG_LOG)("Highlight graphics rect:", {
-        x: -4,
-        y: y - 4,
-        w: this.windowDimensions.width - 16 + 4 - -4,
-        h: y + this.choiceHeightList[this.currentIndex] + 4 - (y - 4)
-    });
-    this.highlightGraphics.drawRect(cc.p(-4, y - 4), cc.p(this.windowDimensions.width - 16 + 4, y + this.choiceHeightList[this.currentIndex] + 4), cc.color(0, 255, 255, 128), 0, cc.color(0, 0, 0, 0));
+    this.highlightGraphics.drawRect(cc.p(-(MARGIN / 2), y - MARGIN / 2), cc.p(this.windowDimensions.width - (3 * MARGIN) / 2, y + this.choiceHeightList[this.currentIndex] + MARGIN / 2), this.showChoicesService.getHighlightColor(), 0, cc.color(0, 0, 0, 0));
     this.layers.highlight.addChild(this.highlightGraphics);
     this.highlightGraphics.runAction(cc.sequence(cc.fadeIn(0.0), cc.repeat(cc.sequence(cc.fadeTo(0.5, 255), cc.fadeTo(0.5, 128)), Math.pow(2, 30))));
 }
@@ -1932,15 +1910,6 @@ var ShowChoicesVerticalPositionParameterId;
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.createShowChoicesService = void 0;
 var create_choices_service_function_1 = __webpack_require__(/*! ../../../utils/choices/create-choices-service.function */ "./src/utils/choices/create-choices-service.function.ts");
@@ -1957,7 +1926,7 @@ function createShowChoicesService(config, internal) {
         type: config.backgroundDisplayType
     });
     internalApi.font = createFontData(config.fontId);
-    internalApi.highlightColor = createHighlightColor();
+    internalApi.highlightColor = createHighlightColor(config.highlightColor);
     internalApi.position = {
         horizontal: config.horizontalPosition,
         vertical: config.verticalPosition
@@ -2086,15 +2055,14 @@ function createShowChoicesService(config, internal) {
 }
 exports.createShowChoicesService = createShowChoicesService;
 function createBackgroundData(config) {
-    var _a, _b;
     var backgroundData = {};
     switch (config.type) {
         case show_choices_background_display_type_enum_1.ShowChoicesBackgroundDisplayType.Graphics:
             var borderColor = config.borderColor || [255, 255, 255, 255];
             var color = config.color || [0, 0, 0, 128];
             backgroundData.type = show_choices_background_display_type_enum_1.ShowChoicesBackgroundDisplayType.Graphics;
-            backgroundData.borderColor = new ((_a = cc.Color).bind.apply(_a, __spreadArray([void 0], borderColor, false)))();
-            backgroundData.color = new ((_b = cc.Color).bind.apply(_b, __spreadArray([void 0], color, false)))();
+            backgroundData.borderColor = new cc.Color(borderColor[0], borderColor[1], borderColor[2], borderColor[3]);
+            backgroundData.color = new cc.Color(color[0], color[1], color[2], color[3]);
             break;
         case show_choices_background_display_type_enum_1.ShowChoicesBackgroundDisplayType.Image:
             if (!config.imageId) {
@@ -2162,8 +2130,8 @@ function createFontData(fontId) {
     return fontData;
 }
 function createHighlightColor(color) {
-    var _a;
-    return new ((_a = cc.Color).bind.apply(_a, __spreadArray([void 0], (color || [0, 255, 255, 128]), false)))();
+    if (color === void 0) { color = [0, 255, 255, 128]; }
+    return new cc.Color(color[0], color[1], color[2], color[3]);
 }
 function createTextData(textIds, locale) {
     var textData = [];
@@ -3041,27 +3009,6 @@ exports.parameters = [
         ]
     }
 ];
-
-
-/***/ }),
-
-/***/ "./src/utils/_debug-log.function.ts":
-/*!******************************************!*\
-  !*** ./src/utils/_debug-log.function.ts ***!
-  \******************************************/
-/***/ (function(__unused_webpack_module, exports) {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.DEBUG_LOG = void 0;
-function DEBUG_LOG(msg, data) {
-    var log = Agtk.log;
-    log(msg, 'Debug');
-    if (data !== undefined) {
-        log(data, 'Debug');
-    }
-}
-exports.DEBUG_LOG = DEBUG_LOG;
 
 
 /***/ }),
